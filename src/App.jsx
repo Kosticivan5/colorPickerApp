@@ -27,6 +27,15 @@ function App() {
 
   return (
     <section className="section-center">
+      <h2
+      // style={{
+      //   textAlign: "center",
+      //   padding: "20px",
+      //   textTransform: "capitalize",
+      // }}
+      >
+        your favorite tints and shades
+      </h2>
       <Colors
         colors={colors}
         handleColor={handleColor}

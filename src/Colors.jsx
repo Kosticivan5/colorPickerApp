@@ -18,6 +18,7 @@ const Colors = ({ colors, handleColor, toast, handleRange }) => {
   return (
     <>
       <form className="color-form" onSubmit={handleSubmit}>
+        <label htmlFor="color-picker">Pick a color with color picker</label>
         <input
           type="color"
           className="color-picker"
@@ -26,8 +27,10 @@ const Colors = ({ colors, handleColor, toast, handleRange }) => {
             setColor(e.target.value);
           }}
         />
+        <label htmlFor="range-input">Select your preferred range</label>
         <input
           className="range-input"
+          id="range-input"
           type="range"
           value={rangeValue}
           min="2"
@@ -39,10 +42,12 @@ const Colors = ({ colors, handleColor, toast, handleRange }) => {
             handleColor(color);
           }}
         />
+        <label htmlFor="color-hex">Enter your favorite color</label>
         <div>
           <input
             type="text"
             placeholder="#0f366c"
+            id="color-hex"
             className="color-hex"
             value={color}
             onChange={(e) => {
