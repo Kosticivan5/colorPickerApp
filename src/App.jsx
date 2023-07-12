@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import Colors from "./Colors";
 import Values from "values.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [colors, setColors] = useState(new Values("#0f366c").all(10));
@@ -17,10 +17,9 @@ function App() {
     }
   };
 
-  const handleRange = (range, color) => {
+  const handleRange = (range) => {
     try {
       setInitialRange(range);
-      setColors(new Values(color).all(initialRange));
     } catch (error) {
       console.log(error);
     }
