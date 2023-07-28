@@ -5,12 +5,11 @@ import Colors from "./Colors";
 import Values from "values.js";
 
 function App() {
-  const values = new Values("#0f366c");
-
+  const vls = new Values("#0f366c");
   return (
     <section className="section-center">
       <h2>your favorite tints and shades</h2>
-      <Colors toast={toast} values={values} />
+      <Colors toast={toast} vls={vls} />
       <ToastContainer
         position="top-center"
         autoClose={1500}

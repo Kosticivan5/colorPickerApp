@@ -2,12 +2,32 @@ import { useState } from "react";
 import Color from "./Color";
 import { nanoid } from "nanoid";
 
-const Colors = ({ colors, handleColor, toast, handleRange }) => {
+const Colors = ({ values, toast }) => {
+  const [intValue, setIntValue] = useState(10);
   const [color, setColor] = useState("#0f366c");
-  const [rangeValue, setRangeValue] = useState(10);
+  const [colors, setColors] = useState(values.all(intValue));
+  const [rangeValue, setRangeValue] = useState(intValue);
+
+  const handleColor = (e) => {
+    // e.preventDefault();
+    try {
+      let val = e.target.value;
+      setColor(val);
+      values.setColor(val);
+      setColors(values.all(rangeValue));
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleRange = (e) => {
+    let val = parseInt(e.target.value, 10);
+    setRangeValue(val);
+    setColors(values.all(val));
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (color === "") {
       toast.error(`Please enter some value`);
     }
@@ -19,14 +39,7 @@ const Colors = ({ colors, handleColor, toast, handleRange }) => {
     <>
       <form className="color-form" onSubmit={handleSubmit}>
         <label htmlFor="color-picker">Pick a color with color picker</label>
-        <input
-          type="color"
-          className="color-picker"
-          onChange={(e) => {
-            handleColor(e.target.value);
-            setColor(e.target.value);
-          }}
-        />
+        <input type="color" className="color-picker" onChange={handleColor} />
         <label htmlFor="range-input">Select your preferred range</label>
         <input
           className="range-input"
@@ -36,11 +49,7 @@ const Colors = ({ colors, handleColor, toast, handleRange }) => {
           min="2"
           max="20"
           step="2"
-          onChange={(e) => {
-            handleRange(parseInt(e.target.value));
-            setRangeValue(parseInt(e.target.value));
-            handleColor(color);
-          }}
+          onChange={handleRange}
         />
         <label htmlFor="color-hex">Enter your favorite color</label>
         <div>
