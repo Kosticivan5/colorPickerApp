@@ -27,7 +27,7 @@ const Colors = ({ values, toast }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (color === "") {
       toast.error(`Please enter some value`);
     }
